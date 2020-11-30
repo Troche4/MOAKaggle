@@ -187,3 +187,24 @@ The resulting plot of the explained variance at each PC for the gene expression 
 the cell viability data was replaced with the first 2 PCs. 
   
 ![viability elbow plot](plots/c-PCA_elbow_plot.png)
+
+
+# Usage
+
+Directory structure:
+
+```
+|--root/
+  |-- data/
+      |--lish-moa/
+      |--train/
+      |--test/
+  |--plots/
+```
+`
+1. Download dataset folder from https://www.kaggle.com/c/lish-moa/data and place in folder named data
+
+2. Run `splitdataset.py` to split data into training and test data.
+
+3. Run `preprocessing.py` to encode categorical variables and replace gene / cell viability data with PCs. 
+This will output 3 files and 1 plot for both the training dataset and the test dataset.
