@@ -20,9 +20,9 @@ y_test = pd.read_csv('./data/test/y_test.csv', index_col=0)
 
 def grid_search(X_train, y_train):
   model_params = {
-    'estimator__n_estimators': [10],
-    'estimator__max_depth': [3],
-    'estimator__min_samples_split': [4]
+    'estimator__n_estimators': [5, 10, 20],
+    'estimator__max_depth': [3, 5, 10],
+    'estimator__min_samples_split': [4, 7, 10]
   }
 
   # create random forest classifier model
