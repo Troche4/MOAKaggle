@@ -31,7 +31,7 @@ def grid_search(X_train, y_train):
 
   # set up grid search meta-estimator
   # clf = GridSearchCV(rf_model, model_params, cv=3, scoring='neg_log_loss', pre_dispatch='2')
-  clf = GridSearchCV(multi_target_forest, param_grid=model_params, cv=3, n_jobs=-1)
+  clf = GridSearchCV(multi_target_forest, param_grid=model_params, cv=5, n_jobs=-1)
 
   # fit classifier to data
   clf.fit(X_train, y_train)
