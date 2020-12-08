@@ -21,8 +21,8 @@ Y_test = pd.read_csv('./data/test/y_test.csv', index_col=0)
 
 #initialize hyperparameters
 hyperparameters = {
-    "C":[0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000], 
-    "kernel":['linear', 'poly', 'rbf', 'sigmoid'],
+    "C":[0.0001], 
+    "kernel":['linear'],
     }
 
 #initialize grid searcher and classifier
@@ -30,6 +30,7 @@ clf = SVC()
 grid_searcher = GridSearchCV(estimator=clf, param_grid=hyperparameters, cv=5) 
 
 #fit, predict, and score for each column in the encoded data
+"""
 log_losses_encoded = list()
 for column in Y_train.iteritems():
     grid_searcher.fit(X=X_train_encoded, y=column[1])
@@ -39,6 +40,7 @@ for column in Y_train.iteritems():
     log_losses_encoded.append(score)
 avg_log_loss_encoded = sum(log_losses_encoded) / len(log_losses_encoded)
 print("Avg. log loss value for encoded data: ", avg_log_loss_encoded)
+"""
 
 #fit, predict, and score for each column in the gene pca data
 log_losses_gene_pca = list()
@@ -62,6 +64,7 @@ for column in Y_train.iteritems():
 avg_log_loss_gene_viability_pca = sum(log_losses_gene_viability_pca) / len(log_losses_gene_viability_pca)
 print("Avg. log loss value for gene viability PCA data: ", avg_log_loss_gene_viability_pca)
 
+"""
 labels = ["Encoded", "Gene PCA", "Gene and Viability PCA"]
 results = [avg_log_loss_encoded, avg_log_loss_gene_pca, avg_log_loss_gene_viability_pca]
 
@@ -70,3 +73,4 @@ plt.bar(labels, results)
 plt.ylabel("Log Loss")
 plt.title("Log Loss of Support Vector Machine model")
 plt.savefig("plots/svm_input_results.png")
+"""
