@@ -189,6 +189,32 @@ the cell viability data was replaced with the first 2 PCs.
 ![viability elbow plot](plots/c-PCA_elbow_plot.png)
 
 
+### Final Model Evaluation
+
+The code to train the final models and evaluate them using the test dataset is found in `test_set_evaluation.py`. 
+Models are evaluated using sklearn's `log_loss` method. The final models are shown below:
+
+```{r}
+from sklearn.multioutput import MultiOutputClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.dummy import DummyClassifier
+
+clf = MultiOutputClassifier(estimator=RandomForestClassifier(max_depth=3,
+                                                       min_samples_split=4,
+                                                       n_estimators=10,
+                                                       random_state=1))
+
+svm = SVC(kernel='linear', C=0.001)
+
+dum = MultiOutputClassifier(estimator=DummyClassifier(strategy="stratified"))
+```
+
+The output of `test_set_evaluation.py` is a plot of log loss for each input dataset using each model. 
+
+![final eval plot](plots/score_combined_test_data.png)
+
+
 # Usage
 
 Directory structure:
@@ -208,3 +234,5 @@ Directory structure:
 
 3. Run `preprocessing.py` to encode categorical variables and replace gene / cell viability data with PCs. 
 This will output 3 files and 1 plot for both the training dataset and the test dataset.
+
+4. Run `test_set_evaluation.py` to train the final models and evaluate using the test dataset. 
